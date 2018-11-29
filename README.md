@@ -20,9 +20,7 @@ Block Time : 90 Sec Approx
 
 Block Size : 2MB
 
-Block Reward: 64 SDD increasing to 80 at block 88900
-
-Total Coins: 70,000,000
+Total Coins: 37,500,000
 
 Minimum Stake Age : 6 Hour
 
