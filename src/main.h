@@ -27,6 +27,7 @@ static const int64_t STATIC_POS_REWARD = 10 * CENT; //Constant POS reward of 10%
 static const int64_t TARGET_SPACING_FORK = 90;
 static const int64_t TARGET_SPACING = 90;
 static const int64_t TARGET_SPACING2 = 90;
+static const int64_t NO_MINING_TIME = 100; //How many TARGET_SPACINGs wait until reduce the difficulty for CPU mining 
 static const bool NO_FORK = true;
 static const signed int HARD_FORK_BLOCK = 90000000;
 static const int64_t STAKE_TIMESPAN_SWITCH_TIME = 1508858115;
@@ -155,7 +156,7 @@ bool SendMessages(CNode* pto, bool fSendTrickle);
 void ThreadImport(std::vector<boost::filesystem::path> vImportFiles);
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
-unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
+unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake, bool isMining);
 int64_t GetProofOfWorkReward(int nHeight, int64_t nFees);
 int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, int64_t nFees);
 bool IsInitialBlockDownload();
