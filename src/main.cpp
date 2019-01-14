@@ -2699,8 +2699,8 @@ bool CBlock::AcceptBlock()
         nTargetTmp = TARGET_SPACING2;
 
     LogPrintf("************  nBits =  %s\n", nBits.ToString().c_str());
-    unsigned int GetNextTargetRequired = GetNextTargetRequired(pindexPrev, IsProofOfStake(), false);
-    LogPrintf("************  GetNextTargetRequired(pindexPrev, IsProofOfStake(), false) =  %s\n", GetNextTargetRequired.ToString().c_str());
+    unsigned int GetNextTargetRequiredVar = GetNextTargetRequired(pindexPrev, IsProofOfStake(), false);
+    LogPrintf("************  GetNextTargetRequired(pindexPrev, IsProofOfStake(), false) =  %s\n", GetNextTargetRequiredVar.ToString().c_str());
 
     if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake(), false) && hash != uint256("0x474619e0a58ec88c8e2516f8232064881750e87acac3a416d65b99bd61246968") && (GetBlockTime() - pindexPrev->GetBlockTime()) < NO_MINING_TIME * nTargetTmp)
         return DoS(100, error("AcceptBlock() : incorrect %s", IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
