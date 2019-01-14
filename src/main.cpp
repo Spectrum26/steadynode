@@ -1460,7 +1460,7 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
 
 //-------------------------------------------------------------------------------------------------------
     int64_t nAntiStopMining = GetAdjustedTime() - pindexPrev->GetBlockTime();
-    if (nAntiStopMining >= NO_MINING_TIME * nTargetTemp && isMining)
+    if (nAntiStopMining >= NO_MINING_TIME * nTargetTemp && isMining && (!fProofOfStake))
         return bnTargetLimit.GetCompact(); 
     // if powerful miners quit mining it makes possible CPU mining soon
     // the 3rd parameter is added to avoid invalid check of already mined blocks
