@@ -1478,8 +1478,8 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
     bnNew.SetCompact(pindexPrev->nBits);
 
 //----------------------------------------------------------------------------------------------------
-    if(fProofOfStake)     LogPrintf("!!!bnNew----POS*******  bnNew =  %s\n", bnNew.GetCompact());
-    if(!fProofOfStake)     LogPrintf("!!!bnNew-POW*******  bnNew =  %s\n", bnNew.GetCompact());
+    if(fProofOfStake)     LogPrintf("!!!bnNew----POS*******  bnNew =  %s\n", bnNew);
+    if(!fProofOfStake)     LogPrintf("!!!bnNew-POW*******  bnNew =  %s\n", bnNew);
 //----------------------------------------------------------------------------------------------------
 
     int64_t nInterval = nTargetTimespan / nTargetTemp;
