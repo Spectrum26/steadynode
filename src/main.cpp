@@ -1364,13 +1364,8 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
     }
     else if (nHeight >=          2   && nHeight <       22  ) {nSubsidy =   1    * COIN;}
     else if (nHeight >=         22   && nHeight <      970  ) {nSubsidy =   0    * COIN;}
-    else if (nHeight >=        970   && nHeight <    49700  ) {nSubsidy =   0.01 * COIN;}
-    else if (nHeight >= 	 49700	 && nHeight < 	 69300	) {nSubsidy = 	0.3	 * COIN;}
-    else if (nHeight >= 	 69300	 && nHeight < 	 88900	) {nSubsidy = 	0.5	 * COIN;}
-    else if (nHeight >= 	 88900	 && nHeight < 	108500	) {nSubsidy = 	1	 * COIN;}
-    else if (nHeight >= 	108500	 && nHeight < 	128100	) {nSubsidy = 	0.5	 * COIN;}
-    else if (nHeight >= 	128100	 && nHeight < 	147700	) {nSubsidy = 	0.3	 * COIN;}
-    else if (nHeight >=     147700)                            nSubsidy =   0.1  * COIN;
+    else if (nHeight >=        970   && nHeight <    49850  ) {nSubsidy =   0.01 * COIN;}
+    else if (nHeight >=     49850)   nSubsidy =    0.0001  * COIN;
 
     // add fees.
     return nSubsidy + nFees;
@@ -4536,7 +4531,7 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
-    int64_t ret = blockValue * 4/5;
+    int64_t ret = blockValue * 17/20;
 
     return ret;
 }
