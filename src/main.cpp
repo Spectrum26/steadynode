@@ -1424,7 +1424,7 @@ const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfSta
     return pindex;
 }
 
-unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake, bool isMining)
+unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
 	unsigned int nTargetTemp = TARGET_SPACING;
 	if (pindexLast->nTime > FORK_TIME)
@@ -1451,16 +1451,6 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
         return bnTargetLimit.GetCompact(); // second block
 
     int64_t nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
-
-//-------------------------------------------------------------------------------------------------------
-    int64_t nAntiStopMining = GetAdjustedTime() - pindexPrev->GetBlockTime();
-    if (nAntiStopMining >= NO_MINING_TIME * nTargetTemp && isMining)
-        return bnTargetLimit.GetCompact(); 
-    // if powerful miners quit mining it makes possible CPU mining soon
-    // the 3rd parameter is added to avoid invalid check of already mined blocks
-    // if 'isMining = false' then old blocks nBits is validated against prev block nBits number
-    // else if ve try to mine new block 100 standart block time periods passed the difficulty is set to minimum
-//-------------------------------------------------------------------------------------------------------
 
     if (nActualSpacing < 0){
         nActualSpacing = nTargetTemp;
@@ -2690,20 +2680,9 @@ bool CBlock::AcceptBlock()
     if (IsProofOfStake() && !CheckCoinStakeTimestamp(nHeight, GetBlockTime(), (int64_t)vtx[1].nTime))
         return DoS(50, error("AcceptBlock() : coinstake timestamp violation nTimeBlock=%d nTimeTx=%u", GetBlockTime(), vtx[1].nTime));
 
-
-
-//-----------------------------------------------------------------------------------------------------------------
     // Check proof-of-work or proof-of-stake
-    unsigned int nTargetTmp = TARGET_SPACING;
-    if (pindexPrev->GetBlockTime() > FORK_TIME)
-        nTargetTmp = TARGET_SPACING2;
-
-    if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake(), false) && hash != uint256("0x474619e0a58ec88c8e2516f8232064881750e87acac3a416d65b99bd61246968") && (GetBlockTime() - pindexPrev->GetBlockTime()) < NO_MINING_TIME * nTargetTmp)
+    if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake()) && hash != uint256("0x474619e0a58ec88c8e2516f8232064881750e87acac3a416d65b99bd61246968") && hash != uint256("0x4f3dd45d3de3737d60da46cff2d36df0002b97c505cdac6756d2d88561840b63") && hash != uint256("0x274996cec47b3f3e6cd48c8f0b39c32310dd7ddc8328ae37762be956b9031024"))
         return DoS(100, error("AcceptBlock() : incorrect %s", IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
-    // Last condition means it doesn't matter if old gap in blocks was closed with CPU mining or with resumption of miner 
-//-----------------------------------------------------------------------------------------------------------------
-
-
 
     // Check timestamp against prev
     if (GetBlockTime() <= pindexPrev->GetPastTimeLimit() || FutureDrift(GetBlockTime()) < pindexPrev->GetBlockTime())
@@ -2718,21 +2697,15 @@ bool CBlock::AcceptBlock()
     if (!Checkpoints::CheckHardened(nHeight, hash))
         return DoS(100, error("AcceptBlock() : rejected by hardened checkpoint lock-in at %d", nHeight));
 
-
-//--------------------------------------------------------------------------------------------------------
     // Verify hash target and signature of coinstake tx
     if (IsProofOfStake())
     {
         uint256 targetProofOfStake;
-        if (!CheckProofOfStake(pindexPrev, vtx[1], nBits, hashProof, targetProofOfStake) && (GetBlockTime() - pindexPrev->GetBlockTime()) < NO_MINING_TIME * nTargetTmp)
+        if (!CheckProofOfStake(pindexPrev, vtx[1], nBits, hashProof, targetProofOfStake))
         {
             return error("AcceptBlock() : check proof-of-stake failed for block %s", hash.ToString());
         }
-        // The 2nd condition '&& (GetBlockTime() - pindexPrev->GetBlockTime()) < NO_MINING_TIME * nTargetTmp'
-        // is added for more secure check, it needs more testing
     }
-//--------------------------------------------------------------------------------------------------------
-
 
     // Check that the block satisfies synchronized checkpoint
     if (!Checkpoints::CheckSync(nHeight))
