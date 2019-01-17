@@ -1378,28 +1378,28 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
     
 
      if(nBestHeight >= 10 && nBestHeight < 1500)             { nSubsidy =     2  * COIN; }
-else if(nBestHeight >=  1501     &&  nBestHeight <  7200    ){ nSubsidy =     4  * COIN; }
-else if(nBestHeight >=  7201     &&  nBestHeight <  13000   ){ nSubsidy =     6  * COIN; }
-else if(nBestHeight >=  13001    &&  nBestHeight <  19000   ){ nSubsidy =     8  * COIN; }
-else if(nBestHeight >=  19001    &&  nBestHeight <  23000   ){ nSubsidy =    10  * COIN; }
-else if(nBestHeight >=  23001    &&  nBestHeight <  24500   ){ nSubsidy =    45  * COIN; }
-else if(nBestHeight >=  24501    &&  nBestHeight <  30000   ){ nSubsidy =    90  * COIN; }
-else if(nBestHeight >=  30001    &&  nBestHeight <  40000   ){ nSubsidy =   140  * COIN; }
-else if(nBestHeight >=  40001    &&  nBestHeight <  45000   ){ nSubsidy =   180  * COIN; }
-else if(nBestHeight >= 	45001	 &&  nBestHeight < 	51000	){ nSubsidy = 	140	 * COIN; }
-else if(nBestHeight >= 	51001	 &&  nBestHeight < 	56000	){ nSubsidy = 	40	 * COIN; }
-else if(nBestHeight >= 	56001	 &&  nBestHeight < 	61000	){ nSubsidy = 	70	 * COIN; }
-else if(nBestHeight >= 	61001	 &&  nBestHeight < 	66000	){ nSubsidy = 	150	 * COIN; }
-else if(nBestHeight >= 	66001	 &&  nBestHeight < 	76000	){ nSubsidy = 	200	 * COIN; }
-else if(nBestHeight >= 	76001	 &&  nBestHeight < 	86000	){ nSubsidy = 	250	 * COIN; }
-else if(nBestHeight >= 	86001	 &&  nBestHeight < 	96000	){ nSubsidy = 	280	 * COIN; }
-else if(nBestHeight >= 	96001	 &&  nBestHeight < 	121000	){ nSubsidy = 	300	 * COIN; }
-else if(nBestHeight >= 	121001	 &&  nBestHeight < 	124000	){ nSubsidy = 	200	 * COIN; }
-else if(nBestHeight >= 	124001	 &&  nBestHeight < 	128000	){ nSubsidy = 	100	 * COIN; }
-else if(nBestHeight >= 	128001	 &&  nBestHeight < 	196000	){ nSubsidy = 	44	 * COIN; }
-else if(nBestHeight >= 	196001	 &&  nBestHeight < 	296000	){ nSubsidy = 	10	 * COIN; }
-else if(nBestHeight >= 	296001	 &&  nBestHeight < 	996000	){ nSubsidy = 	2	 * COIN; }
-else if(nBestHeight >= 	996001	 &&  nBestHeight < 	1996000	){ nSubsidy = 	1	 * COIN; }
+else if(nBestHeight >=  1500     &&  nBestHeight <  7200    ){ nSubsidy =     4  * COIN; }
+else if(nBestHeight >=  7200     &&  nBestHeight <  13000   ){ nSubsidy =     6  * COIN; }
+else if(nBestHeight >=  13000    &&  nBestHeight <  19000   ){ nSubsidy =     8  * COIN; }
+else if(nBestHeight >=  19000    &&  nBestHeight <  23000   ){ nSubsidy =    10  * COIN; }
+else if(nBestHeight >=  23000    &&  nBestHeight <  24500   ){ nSubsidy =    45  * COIN; }
+else if(nBestHeight >=  24500    &&  nBestHeight <  30000   ){ nSubsidy =    90  * COIN; }
+else if(nBestHeight >=  30000    &&  nBestHeight <  40000   ){ nSubsidy =   140  * COIN; }
+else if(nBestHeight >=  40000    &&  nBestHeight <  45000   ){ nSubsidy =   180  * COIN; }
+else if(nBestHeight >= 	45000	 &&  nBestHeight < 	51000	){ nSubsidy = 	140	 * COIN; }
+else if(nBestHeight >= 	51000	 &&  nBestHeight < 	56000	){ nSubsidy = 	40	 * COIN; }
+else if(nBestHeight >= 	56000	 &&  nBestHeight < 	61000	){ nSubsidy = 	70	 * COIN; }
+else if(nBestHeight >= 	61000	 &&  nBestHeight < 	66000	){ nSubsidy = 	150	 * COIN; }
+else if(nBestHeight >= 	66000	 &&  nBestHeight < 	76000	){ nSubsidy = 	200	 * COIN; }
+else if(nBestHeight >= 	76000	 &&  nBestHeight < 	86000	){ nSubsidy = 	250	 * COIN; }
+else if(nBestHeight >= 	86000	 &&  nBestHeight < 	96000	){ nSubsidy = 	280	 * COIN; }
+else if(nBestHeight >= 	96000	 &&  nBestHeight < 	121000	){ nSubsidy = 	300	 * COIN; }
+else if(nBestHeight >= 	121000	 &&  nBestHeight < 	124000	){ nSubsidy = 	200	 * COIN; }
+else if(nBestHeight >= 	124000	 &&  nBestHeight < 	128000	){ nSubsidy = 	100	 * COIN; }
+else if(nBestHeight >= 	128000	 &&  nBestHeight < 	196000	){ nSubsidy = 	44	 * COIN; }
+else if(nBestHeight >= 	196000	 &&  nBestHeight < 	296000	){ nSubsidy = 	10	 * COIN; }
+else if(nBestHeight >= 	296000	 &&  nBestHeight < 	996000	){ nSubsidy = 	2	 * COIN; }
+else if(nBestHeight >= 	996000	 &&  nBestHeight < 	1996000	){ nSubsidy = 	1	 * COIN; }
 
     else if(nBestHeight >= 1996000){
         // end game - further discussion needed
