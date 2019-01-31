@@ -83,10 +83,10 @@ public:
 
 		hashGenesisBlock = genesis.GetHash();
   
-        LogPrintf("Display genesis hash so we can input it below %s\n", hashGenesisBlock.ToString().c_str());
-	    LogPrintf("Display merkle root so we can input it below %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        LogPrintf("Display nonce so we can input it below %s\n", genesis.nNonce);
-        LogPrintf("Display time so we can input it below %s\n", genesis.nTime);
+        //LogPrintf("Display genesis hash so we can input it below %s\n", hashGenesisBlock.ToString().c_str());
+	 //   LogPrintf("Display merkle root so we can input it below %s\n", genesis.hashMerkleRoot.ToString().c_str());
+       // LogPrintf("Display nonce so we can input it below %s\n", genesis.nNonce);
+       // LogPrintf("Display time so we can input it below %s\n", genesis.nTime);
 
 		assert(genesis.hashMerkleRoot == uint256("0xb94422d43f62101f2d89f0b57adb79a729b7effc2a33f212c497f08f6ec34a14"));
 		assert(hashGenesisBlock == uint256("0x36d60b0bfa1a74a3143d2ebe5a3866f24dd54e76a1b6caffa3e680786b4a763b"));
@@ -153,7 +153,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-        LogPrintf("Display testNet genesis hash so we can input it below %s\n", hashGenesisBlock.ToString().c_str());
+        //LogPrintf("Display testNet genesis hash so we can input it below %s\n", hashGenesisBlock.ToString().c_str());
 
 		assert(hashGenesisBlock == uint256("0x92ec5ddff1ed46e8fca6d0c7b68eaeaeb5a15ee1c8e3590175d74b4b7115c76e"));
 
